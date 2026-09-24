@@ -275,12 +275,12 @@ public class Application {
                 <p class="quote">"people feel safe to ask questions, make mistakes, and experiment, especially for beginners."</p>
             </div>
 
-            <!-- Oluwakemi -->
+            <!-- Oluwakemisola -->
             <div class="trainee-card">
                 <div class="photo-box">
-                    <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Oluwakemi&backgroundColor=b6e3f4" alt="Oluwakemi">
+                    <img src="https://media.licdn.com/dms/image/v2/D4E03AQHcvbkcgwwr5A/profile-displayphoto-scale_200_200/B4EaDTloGfKEAc-/0/1790256253370?e=1792022400&v=beta&t=aGazENt4dh5oYl89nsnR8Xl5gdpZVU3ScAv5sl5AVSE" alt="Oluwakemisola">
                 </div>
-                <h3 class="name">Oluwakemi</h3>
+                <h3 class="name">Oluwakemisola</h3>
                 <div class="superlative">Infrastructurе Engineer Intern</div>
                 <p class="quote">"The learning environment is calm, welcoming, and supportive."</p>
             </div>

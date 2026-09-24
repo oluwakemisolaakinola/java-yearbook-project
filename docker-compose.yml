@@ -1,0 +1,14 @@
+services:
+  portfolio:
+    build:
+      context: ./myportfolio
+    container_name: portfolio-app
+    ports:
+      - "8080:80"
+
+  yearbook:
+    build:
+      context: ./java
+    container_name: yearbook-app
+    ports:
+      - "8081:8081"

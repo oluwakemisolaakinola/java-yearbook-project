@@ -1,0 +1,1078 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Kella — Cloud & DevOps Engineer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0B1220;
+      --surface:#111827;
+      --surface-2:#161F32;
+      --primary:#2563EB;
+      --accent:#38BDF8;
+      --text:#F8FAFC;
+      --text-soft:#94A3B8;
+      --line:#1F2937;
+
+      --display:"Space Grotesk", sans-serif;
+      --body:"Inter", sans-serif;
+      --mono:"IBM Plex Mono", monospace;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:var(--body);
+      line-height:1.6;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .container{
+      width:min(1100px, 90%);
+      margin:auto;
+    }
+
+    /* NAVBAR */
+
+    nav{
+      border-bottom:1px solid var(--line);
+      padding:20px 0;
+      position:sticky;
+      top:0;
+      background:rgba(11,18,32,.95);
+      backdrop-filter:blur(10px);
+      z-index:100;
+    }
+
+    .nav-inner{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .logo{
+      font-family:var(--display);
+      font-size:1.4rem;
+      font-weight:700;
+    }
+
+    .logo span{
+      color:var(--accent);
+    }
+
+    .nav-links{
+      display:flex;
+      gap:28px;
+      font-size:.9rem;
+      color:var(--text-soft);
+    }
+
+    .nav-links a:hover{
+      color:var(--accent);
+    }
+
+    /* HERO */
+
+    .hero{
+      padding:110px 0 80px;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:7px 12px;
+      border:1px solid var(--line);
+      background:var(--surface);
+      color:var(--accent);
+      border-radius:20px;
+      font-family:var(--mono);
+      font-size:.75rem;
+      margin-bottom:25px;
+    }
+
+    .hero h1{
+      font-family:var(--display);
+      font-size:clamp(3rem, 7vw, 5.8rem);
+      line-height:1.05;
+      max-width:850px;
+      margin-bottom:25px;
+      letter-spacing:-2px;
+    }
+
+    .hl{
+      color:var(--accent);
+    }
+
+    .hero p{
+      max-width:700px;
+      color:var(--text-soft);
+      font-size:1.05rem;
+      margin-bottom:35px;
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:15px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:12px 20px;
+      border-radius:7px;
+      font-weight:600;
+      border:1px solid var(--line);
+      transition:.2s ease;
+    }
+
+    .btn-primary{
+      background:var(--primary);
+      border-color:var(--primary);
+    }
+
+    .btn-secondary{
+      background:var(--surface);
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+    }
+
+    /* STATS */
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      margin-bottom:100px;
+    }
+
+    .stat{
+      padding:28px 20px;
+      border-right:1px solid var(--line);
+    }
+
+    .stat:last-child{
+      border-right:none;
+    }
+
+    .stat strong{
+      display:block;
+      font-family:var(--display);
+      font-size:1rem;
+      margin-bottom:5px;
+    }
+
+    .stat span{
+      color:var(--text-soft);
+      font-size:.8rem;
+    }
+
+    /* SECTION */
+
+    section{
+      padding:70px 0;
+    }
+
+    .section-label{
+      color:var(--accent);
+      font-family:var(--mono);
+      font-size:.75rem;
+      margin-bottom:12px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+
+    .section-title{
+      font-family:var(--display);
+      font-size:2.2rem;
+      margin-bottom:45px;
+    }
+
+    /* STACK */
+
+    .stack-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .stack-card{
+      background:var(--surface);
+      border:1px solid var(--line);
+      padding:25px;
+      border-radius:10px;
+    }
+
+    .stack-card h3{
+      font-family:var(--display);
+      margin-bottom:8px;
+    }
+
+    .stack-card p{
+      color:var(--text-soft);
+      font-size:.9rem;
+    }
+
+    /* PROJECTS */
+
+    .project-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:22px;
+    }
+
+    .project-card{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:28px;
+      transition:.2s ease;
+    }
+
+    .project-card:hover{
+      border-color:#334155;
+      transform:translateY(-3px);
+    }
+
+    .project-number{
+      color:var(--accent);
+      font-family:var(--mono);
+      font-size:.75rem;
+      margin-bottom:18px;
+    }
+
+    .project-card h3{
+      font-family:var(--display);
+      font-size:1.35rem;
+      margin-bottom:10px;
+    }
+
+    .project-card p{
+      color:var(--text-soft);
+      font-size:.9rem;
+      margin-bottom:18px;
+    }
+
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:7px;
+      margin-bottom:22px;
+    }
+
+    .tag{
+      background:var(--surface-2);
+      border:1px solid var(--line);
+      padding:5px 9px;
+      border-radius:5px;
+      font-family:var(--mono);
+      font-size:.7rem;
+      color:var(--text-soft);
+    }
+
+    .project-links{
+      display:flex;
+      gap:15px;
+      font-family:var(--mono);
+      font-size:.75rem;
+    }
+
+    .project-links a{
+      color:var(--accent);
+    }
+
+    .project-links a:hover{
+      text-decoration:underline;
+    }
+
+    /* LABS */
+
+    .labs{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .lab{
+      border:1px solid var(--line);
+      background:var(--surface);
+      padding:22px;
+      border-radius:8px;
+    }
+
+    .lab h3{
+      font-family:var(--display);
+      font-size:1rem;
+      margin-bottom:8px;
+    }
+
+    .lab p{
+      color:var(--text-soft);
+      font-size:.82rem;
+    }
+
+    /* CONTACT */
+
+    footer{
+      margin-top:80px;
+      border-top:1px solid var(--line);
+      padding:70px 0;
+    }
+
+    footer h1{
+      font-family:var(--display);
+      font-size:1.6rem;
+      margin:0 0 20px 0;
+      line-height:1.3;
+    }
+
+    footer .contact-role{
+      color:var(--accent);
+      font-size:1.1rem;
+    }
+
+    .contact-text{
+      color:var(--text-soft);
+      max-width:600px;
+      margin-bottom:25px;
+    }
+
+    .contact-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:20px;
+      margin-bottom:35px;
+    }
+
+    .contact-links a{
+      color:var(--accent);
+      font-family:var(--mono);
+      font-size:.8rem;
+    }
+
+    .footer-line{
+      border-top:1px solid var(--line);
+      padding-top:20px;
+      color:var(--text-soft);
+      font-family:var(--mono);
+      font-size:.7rem;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:800px){
+
+      .stats{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .stat:nth-child(2){
+        border-right:none;
+      }
+
+      .stat:nth-child(3),
+      .stat:nth-child(4){
+        border-top:1px solid var(--line);
+      }
+
+      .stack-grid,
+      .labs{
+        grid-template-columns:1fr;
+      }
+
+      .project-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero{
+        padding-top:80px;
+      }
+    }
+
+    @media(max-width:600px){
+
+      .nav-inner{
+        align-items:flex-start;
+        gap:15px;
+      }
+
+      .nav-links{
+        gap:12px;
+        font-size:.75rem;
+        flex-wrap:wrap;
+        justify-content:flex-end;
+      }
+
+      .hero h1{
+        font-size:3rem;
+      }
+
+      .stats{
+        grid-template-columns:1fr;
+      }
+
+      .stat{
+        border-right:none;
+        border-bottom:1px solid var(--line);
+      }
+
+      .stat:last-child{
+        border-bottom:none;
+      }
+
+      .stat:nth-child(3),
+      .stat:nth-child(4){
+        border-top:none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <nav>
+    <div class="container nav-inner">
+
+      <a href="#" class="logo">
+        Kella<span>.</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#stack">Stack</a>
+        <a href="#projects">Projects</a>
+        <a href="#labs">Labs</a>
+        <a href="#contact">Contact Me</a>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+
+  <main>
+
+    <section class="hero">
+      <div class="container">
+
+        <div class="badge">
+          Open to Cloud & DevOps roles
+        </div>
+
+        <h1>
+          Cloud infrastructure,
+          <span class="hl">automation</span>
+          and DevOps.
+        </h1>
+
+        <p>
+          I build and automate practical cloud solutions with AWS, Linux,
+          Terraform, Docker, and CI/CD. I turn what I learn into real projects,
+          document my work, and focus on building systems that are reliable
+          and repeatable.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a href="#projects" class="btn btn-primary">
+            View Projects
+          </a>
+
+          <a href="https://github.com/oluwakemisolaakinola"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="btn btn-secondary">
+            GitHub
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- STATS -->
+
+    <section class="stats container">
+
+      <div class="stat">
+        <strong>AWS</strong>
+        <span>Cloud Platform</span>
+      </div>
+
+      <div class="stat">
+        <strong>IaC</strong>
+        <span>Terraform & CloudFormation</span>
+      </div>
+
+      <div class="stat">
+        <strong>Linux</strong>
+        <span>Server Administration</span>
+      </div>
+
+      <div class="stat">
+        <strong>CI/CD</strong>
+        <span>Automation & Deployment</span>
+      </div>
+
+    </section>
+
+
+    <!-- STACK -->
+
+    <section id="stack">
+      <div class="container">
+
+        <div class="section-label">
+          01 / Stack
+        </div>
+
+        <h2 class="section-title">
+          Tools I work with.
+        </h2>
+
+        <div class="stack-grid">
+
+          <div class="stack-card">
+            <h3>AWS</h3>
+            <p>
+              EC2, VPC, ALB, Auto Scaling, RDS, CloudWatch and Lambda.
+            </p>
+          </div>
+
+          <div class="stack-card">
+            <h3>Terraform</h3>
+            <p>
+              Infrastructure as Code for provisioning and managing AWS resources.
+            </p>
+          </div>
+
+          <div class="stack-card">
+            <h3>Ansible</h3>
+            <p>
+              Server configuration, automation and remote management.
+            </p>
+          </div>
+
+          <div class="stack-card">
+            <h3>Docker</h3>
+            <p>
+              Containerization and application deployment.
+            </p>
+          </div>
+
+          <div class="stack-card">
+            <h3>Linux</h3>
+            <p>
+              Command line, users, permissions, networking, services and Apache.
+            </p>
+          </div>
+
+          <div class="stack-card">
+            <h3>Git</h3>
+            <p>
+              Version control, repositories, commits and project documentation.
+            </p>
+          </div>
+
+          <div class="stack-card">
+            <h3>Java</h3>
+            <p>
+              Java 21, Maven and Apache Tomcat application deployment.
+            </p>
+          </div>
+
+          <div class="stack-card">
+            <h3>Python</h3>
+            <p>
+              Python functions and AWS Lambda experiments.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- FEATURED PROJECTS -->
+
+    <section id="projects">
+      <div class="container">
+
+        <div class="section-label">
+          02 / Projects
+        </div>
+
+        <h2 class="section-title">
+          Featured projects.
+        </h2>
+
+        <div class="project-grid">
+
+          <!-- PROJECT 01 -->
+
+          <article class="project-card">
+
+            <div class="project-number">
+              PROJECT / 01
+            </div>
+
+            <h3>
+              AWS Auto Scaling Web Application
+            </h3>
+
+            <p>
+              Built a web application environment using EC2, Apache,
+              Application Load Balancer and CloudWatch. Configured an
+              Auto Scaling Group with CPU target tracking and tested
+              automatic scaling under simulated load.
+            </p>
+
+            <div class="tags">
+              <span class="tag">AWS</span>
+              <span class="tag">EC2</span>
+              <span class="tag">ALB</span>
+              <span class="tag">CloudWatch</span>
+              <span class="tag">Auto Scaling</span>
+              <span class="tag">Apache</span>
+            </div>
+
+            <div class="project-links">
+              <span>GitHub — coming soon</span>
+              <span>Demo — coming soon</span>
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT 02 -->
+
+          <article class="project-card">
+
+            <div class="project-number">
+              PROJECT / 02
+            </div>
+
+            <h3>
+              AWS Application Load Balancer
+            </h3>
+
+            <p>
+              Deployed two EC2 Apache web servers behind an Application
+              Load Balancer. Configured target groups, health checks and
+              traffic distribution between the instances.
+            </p>
+
+            <div class="tags">
+              <span class="tag">AWS</span>
+              <span class="tag">EC2</span>
+              <span class="tag">ALB</span>
+              <span class="tag">Apache</span>
+              <span class="tag">Networking</span>
+            </div>
+
+            <div class="project-links">
+              <span>GitHub — coming soon</span>
+              <span>Demo — coming soon</span>
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT 03 -->
+
+          <article class="project-card">
+
+            <div class="project-number">
+              PROJECT / 03
+            </div>
+
+            <h3>
+              AWS VPC & Network Infrastructure
+            </h3>
+
+            <p>
+              Designed a VPC with multiple subnets across Availability Zones,
+              configured routing and internet connectivity, and worked with
+              AWS network security controls.
+            </p>
+
+            <div class="tags">
+              <span class="tag">AWS</span>
+              <span class="tag">VPC</span>
+              <span class="tag">Subnets</span>
+              <span class="tag">Routing</span>
+              <span class="tag">Security</span>
+            </div>
+
+            <div class="project-links">
+              <span>GitHub — coming soon</span>
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT 04 -->
+
+          <article class="project-card">
+
+            <div class="project-number">
+              PROJECT / 04
+            </div>
+
+            <h3>
+              Terraform AWS Infrastructure
+            </h3>
+
+            <p>
+              Built and applied a Terraform project to provision AWS
+              infrastructure, including an S3 bucket. Version-controlled
+              the configuration using Git and GitHub.
+            </p>
+
+            <div class="tags">
+              <span class="tag">Terraform</span>
+              <span class="tag">AWS</span>
+              <span class="tag">S3</span>
+              <span class="tag">Git</span>
+              <span class="tag">IaC</span>
+            </div>
+
+            <div class="project-links">
+              <a href="https://github.com/oluwakemisolaakinola/terraform-s3-lab"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                GitHub →
+              </a>
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- MORE PROJECTS -->
+
+    <section>
+      <div class="container">
+
+        <div class="section-label">
+          03 / More Projects
+        </div>
+
+        <h2 class="section-title">
+          More work.
+        </h2>
+
+        <div class="project-grid">
+
+          <!-- PROJECT 05 -->
+
+          <article class="project-card">
+
+            <div class="project-number">
+              PROJECT / 05
+            </div>
+
+            <h3>
+              Linux Web Server Deployment
+            </h3>
+
+            <p>
+              Configured a Linux web server and deployed a web application
+              using Apache. Practiced Linux administration, services,
+              permissions and basic server troubleshooting.
+            </p>
+
+            <div class="tags">
+              <span class="tag">Linux</span>
+              <span class="tag">Apache</span>
+              <span class="tag">Server Administration</span>
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT 06 -->
+
+          <article class="project-card">
+
+            <div class="project-number">
+              PROJECT / 06
+            </div>
+
+            <h3>
+              Custom DNS & Domain Configuration
+            </h3>
+
+            <p>
+              Practiced DNS configuration and connected domain records
+              to AWS services using Route 53.
+            </p>
+
+            <div class="tags">
+              <span class="tag">DNS</span>
+              <span class="tag">Route 53</span>
+              <span class="tag">AWS</span>
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT 07 -->
+
+          <article class="project-card">
+
+            <div class="project-number">
+              PROJECT / 07
+            </div>
+
+            <h3>
+              Ansible EC2 Configuration
+            </h3>
+
+            <p>
+              Used Ansible to connect to EC2 instances over SSH and
+              automate server configuration and management.
+            </p>
+
+            <div class="tags">
+              <span class="tag">Ansible</span>
+              <span class="tag">AWS EC2</span>
+              <span class="tag">SSH</span>
+              <span class="tag">Automation</span>
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT 08 -->
+
+          <article class="project-card">
+
+            <div class="project-number">
+              PROJECT / 08
+            </div>
+
+            <h3>
+              Java Application Deployment
+            </h3>
+
+            <p>
+              Worked with a Java 21 application using Maven and prepared
+              the application for deployment with Apache Tomcat.
+            </p>
+
+            <div class="tags">
+              <span class="tag">Java 21</span>
+              <span class="tag">Maven</span>
+              <span class="tag">Tomcat</span>
+            </div>
+
+            <div class="project-links">
+              <span>In progress</span>
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT 09 -->
+
+          <article class="project-card">
+
+            <div class="project-number">
+              PROJECT / 09
+            </div>
+
+            <h3>
+              AWS CloudFormation Project
+            </h3>
+
+            <p>
+              Created AWS infrastructure using CloudFormation templates
+              to practice Infrastructure as Code and repeatable resource
+              deployment.
+            </p>
+
+            <div class="tags">
+              <span class="tag">AWS</span>
+              <span class="tag">CloudFormation</span>
+              <span class="tag">IaC</span>
+              <span class="tag">YAML</span>
+            </div>
+
+            <div class="project-links">
+              <a href="https://github.com/oluwakemisolaakinola/Cloudformation-Project"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                GitHub →
+              </a>
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- LABS -->
+
+    <section id="labs">
+      <div class="container">
+
+        <div class="section-label">
+          04 / Labs
+        </div>
+
+        <h2 class="section-title">
+          Labs & experiments.
+        </h2>
+
+        <div class="labs">
+
+          <div class="lab">
+
+            <h3>
+              Bash Interactive Menu Script
+            </h3>
+
+            <p>
+              Built an interactive Bash script using loops, conditions,
+              user input and menu-based options.
+            </p>
+
+          </div>
+
+
+          <div class="lab">
+
+            <h3>
+              AWS Lambda Python Function
+            </h3>
+
+            <p>
+              Created and tested a Python-based AWS Lambda function
+              to practice serverless computing and event-driven execution.
+            </p>
+
+            <div class="project-links" style="margin-top:15px;">
+
+              <a href="https://github.com/oluwakemisolaakinola/Lambda-Project"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                GitHub →
+              </a>
+
+            </div>
+
+          </div>
+
+
+          <div class="lab">
+
+            <h3>
+              Amazon RDS PostgreSQL
+            </h3>
+
+            <p>
+              Provisioned and configured a PostgreSQL database using
+              Amazon RDS and practiced database connectivity and
+              security configuration.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <footer id="contact">
+
+      <div class="container">
+
+        <h1>
+          Oluwakemisola Esther Akinola
+        </h1>
+
+        <div class="contact-role">
+          Junior Cloud Engineer
+        </div>
+
+        <p class="contact-text" style="margin-top:15px;">
+          Let's connect.
+        </p>
+
+        <p class="contact-text">
+          I'm open to junior cloud and DevOps opportunities and happy
+          to walk through the projects I've built and what I've learned
+          along the way.
+        </p>
+
+        <div class="contact-links">
+
+          <a href="https://github.com/oluwakemisolaakinola"
+             target="_blank"
+             rel="noopener noreferrer">
+            GitHub
+          </a>
+
+          <a href="https://www.linkedin.com/in/oluwakemisola-akinola"
+             target="_blank"
+             rel="noopener noreferrer">
+            LinkedIn
+          </a>
+
+          <a href="mailto:kemiakinolaesther@gmail.com">
+            Email
+          </a>
+
+        </div>
+
+        <div class="footer-line">
+          deployed via Docker · Terraform · Ansible
+        </div>
+
+      </div>
+
+    </footer>
+
+  </main>
+
+</body>
+</html>
+```
