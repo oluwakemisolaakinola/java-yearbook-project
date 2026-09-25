@@ -1,0 +1,60 @@
+pipeline {
+    agent any
+
+    environment {
+        EC2_HOST = '35.176.67.149'
+        EC2_USER = 'ec2-user'
+        APP_DIR  = '/home/ec2-user/java-yearbook-project'
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn -f java/pom.xml clean package'
+            }
+        }
+
+        stage('Deploy to EC2') {
+            steps {
+                withCredentials([
+                    sshUserPrivateKey(
+                        credentialsId: 'ec2-deploy-key',
+                        keyFileVariable: 'SSH_KEY'
+                    )
+                ]) {
+                    sh '''
+                        ssh -i "$SSH_KEY" \
+                            -o StrictHostKeyChecking=no \
+                            "$EC2_USER@$EC2_HOST" \
+                            "cd $APP_DIR && git pull origin main && mvn -f java/pom.xml clean package && docker compose up -d --build"
+                    '''
+                }
+            }
+        }
+
+        stage('Verify Deployment') {
+            steps {
+                withCredentials([
+                    sshUserPrivateKey(
+                        credentialsId: 'ec2-deploy-key',
+                        keyFileVariable: 'SSH_KEY'
+                    )
+                ]) {
+                    sh '''
+                        ssh -i "$SSH_KEY" \
+                            -o StrictHostKeyChecking=no \
+                            "$EC2_USER@$EC2_HOST" \
+                            "cd $APP_DIR && docker compose ps"
+                    '''
+                }
+            }
+        }
+    }
+}
