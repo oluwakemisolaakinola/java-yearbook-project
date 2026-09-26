@@ -58,3 +58,10 @@ logs/
 credentials
 aws-credentials
 .aws/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
