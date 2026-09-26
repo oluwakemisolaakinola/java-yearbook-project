@@ -65,3 +65,4 @@ aws-credentials
 *.tfstate.*
 crash.log
 crash.*.log
+ansible/inventory
