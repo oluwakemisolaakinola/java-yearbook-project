@@ -99,33 +99,27 @@ Access:
 
 http://EC2-PUBLIC-IP:8081
 
-Project Structure
+## Project Structure
 
-final-devops-project/
-│
+```text
+java-yearbook-project/
 ├── ansible/
 │   ├── inventory
-│   ├── setup.yml
-│   └── deploy.yml
-│
+│   └── playbook.yml
 ├── terraform/
-│   ├── main.tf
-│   └── other Terraform files
-│
-├── java-app/
+│   └── main.tf
+├── java/
 │   ├── src/
 │   ├── pom.xml
 │   └── Dockerfile
-│
-├── portfolio/
+├── myportfolio/
 │   ├── index.html
-│   ├── style.css
 │   └── Dockerfile
-│
 ├── docker-compose.yml
-├── Jenkinsfile
+├── jenkinsfile
 ├── README.md
 └── .gitignore
+```
 
 Terraform state files, SSH private keys, environment files, and other sensitive files are excluded using .gitignore.
 Terraform Infrastructure
@@ -140,7 +134,7 @@ VPC
 Public subnet
 Internet Gateway
 Route table
-Route table association
+Main route table with internet route
 Security Group
 EC2 instance
 Ansible Configuration
@@ -176,8 +170,7 @@ The Jenkins pipeline automates the deployment process.
 
 The pipeline is defined in:
 
-Jenkinsfile
-
+jenkinsfile
 The deployment workflow is:
 
 GitHub
@@ -192,10 +185,7 @@ SSH to EC2
 git pull origin main
    |
    v
-docker-compose down
-   |
-   v
-docker-compose up -d --build
+docker compose up -d --build
    |
    v
 Verify Containers
