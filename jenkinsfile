@@ -82,9 +82,11 @@ pipeline {
                     )
                 ]) {
                     sh '''
+                        printf '[webserver]\\n%s ansible_user=ec2-user\\n' "$EC2_HOST" > ansible/jenkins-inventory
+
                         ANSIBLE_HOST_KEY_CHECKING=False \
                         ansible-playbook \
-                            -i ansible/inventory \
+                            -i ansible/jenkins-inventory \
                             ansible/playbook.yml \
                             --private-key "$SSH_KEY" \
                             -u "$SSH_USER"
