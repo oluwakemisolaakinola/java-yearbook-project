@@ -2,10 +2,9 @@ pipeline {
     agent any
 
     environment {
-    EC2_USER = 'ec2-user'
-    APP_DIR  = '/home/ec2-user/java-yearbook-project'
-    AWS_ACCESS_KEY_ID = credentials('aws-terraform')
-}
+        EC2_USER = 'ec2-user'
+        APP_DIR  = '/home/ec2-user/java-yearbook-project'
+    }
 
     stages {
 
@@ -16,43 +15,43 @@ pipeline {
         }
 
         stage('Terraform Init') {
-    steps {
-        withCredentials([
-            [$class: 'AmazonWebServicesCredentialsBinding',
-             credentialsId: 'aws-terraform']
-        ]) {
-            dir('terraform') {
-                sh 'terraform init'
+            steps {
+                withCredentials([
+                    [$class: 'AmazonWebServicesCredentialsBinding',
+                     credentialsId: 'aws-terraform']
+                ]) {
+                    dir('terraform') {
+                        sh 'terraform init'
+                    }
+                }
             }
         }
-    }
-}
 
         stage('Terraform Plan') {
-    steps {
-        withCredentials([
-            [$class: 'AmazonWebServicesCredentialsBinding',
-             credentialsId: 'aws-terraform']
-        ]) {
-            dir('terraform') {
-                sh 'terraform plan'
+            steps {
+                withCredentials([
+                    [$class: 'AmazonWebServicesCredentialsBinding',
+                     credentialsId: 'aws-terraform']
+                ]) {
+                    dir('terraform') {
+                        sh 'terraform plan'
+                    }
+                }
             }
         }
-    }
-}
 
         stage('Terraform Apply') {
-    steps {
-        withCredentials([
-            [$class: 'AmazonWebServicesCredentialsBinding',
-             credentialsId: 'aws-terraform']
-        ]) {
-            dir('terraform') {
-                sh 'terraform apply -auto-approve'
+            steps {
+                withCredentials([
+                    [$class: 'AmazonWebServicesCredentialsBinding',
+                     credentialsId: 'aws-terraform']
+                ]) {
+                    dir('terraform') {
+                        sh 'terraform apply -auto-approve'
+                    }
+                }
             }
         }
-    }
-}
 
         stage('Get EC2 IP') {
             steps {
@@ -110,3 +109,4 @@ pipeline {
         }
     }
 }
+  
