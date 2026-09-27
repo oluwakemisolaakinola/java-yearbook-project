@@ -72,19 +72,22 @@ pipeline {
             }
         }
 
-        stage('Deploy to EC2') {
+        stage('Deploy with Ansible') {
             steps {
                 withCredentials([
                     sshUserPrivateKey(
                         credentialsId: 'ec2-deploy-key',
-                        keyFileVariable: 'SSH_KEY'
+                        keyFileVariable: 'SSH_KEY',
+                        usernameVariable: 'SSH_USER'
                     )
                 ]) {
                     sh '''
-                        ssh -i "$SSH_KEY" \
-                            -o StrictHostKeyChecking=no \
-                            "$EC2_USER@$EC2_HOST" \
-                            "cd $APP_DIR && git pull origin main && mvn -f java/pom.xml clean package && docker compose up -d --build"
+                        ANSIBLE_HOST_KEY_CHECKING=False \
+                        ansible-playbook \
+                            -i ansible/inventory \
+                            ansible/playbook.yml \
+                            --private-key "$SSH_KEY" \
+                            -u "$SSH_USER"
                     '''
                 }
             }
@@ -109,4 +112,5 @@ pipeline {
         }
     }
 }
-  
+```
+
