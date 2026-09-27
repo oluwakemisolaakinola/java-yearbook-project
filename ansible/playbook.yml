@@ -32,3 +32,56 @@
         chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
       args:
         creates: /usr/local/lib/docker/cli-plugins/docker-compose
+
+
+    - name: Create application directory
+      file:
+        path: /home/ec2-user/java-yearbook-project
+        state: directory
+        owner: ec2-user
+        group: ec2-user
+        mode: '0755'
+
+    - name: Copy Docker Compose file to EC2
+      copy:
+        src: "{{ playbook_dir }}/../docker-compose.yml"
+        dest: "/home/ec2-user/java-yearbook-project/docker-compose.yml"
+        owner: ec2-user
+        group: ec2-user
+        mode: '0644'
+
+    - name: Copy portfolio application to EC2
+      copy:
+        src: "{{ playbook_dir }}/../myportfolio/"
+        dest: "/home/ec2-user/java-yearbook-project/myportfolio/"
+        owner: ec2-user
+        group: ec2-user
+
+    - name: Copy Java application to EC2
+      copy:
+        src: "{{ playbook_dir }}/../java/"
+        dest: "/home/ec2-user/java-yearbook-project/java/"
+        owner: ec2-user
+        group: ec2-user
+
+    - name: Stop existing application containers
+      command:
+        cmd: docker compose down
+        chdir: /home/ec2-user/java-yearbook-project
+      ignore_errors: true
+
+    - name: Deploy applications with Docker Compose
+      command:
+        cmd: docker compose up -d --build
+        chdir: /home/ec2-user/java-yearbook-project
+
+    - name: Stop existing application containers
+      command:
+        cmd: docker compose down
+        chdir: /home/ec2-user/java-yearbook-project
+      ignore_errors: true
+
+    - name: Deploy applications with Docker Compose
+      command:
+        cmd: docker compose up -d --build
+        chdir: /home/ec2-user/java-yearbook-project
