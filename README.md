@@ -53,7 +53,7 @@ GitHub → Jenkins → AWS EC2 → Docker Compose → Applications
                       /            \
                      v              v
               Portfolio App      Java App
-                 :8082             :8081
+                 :80             :8081
 
 
 Technologies Used
@@ -81,11 +81,11 @@ The portfolio application is a web application served using Nginx.
 
 Port:
 
-8082
+80
 
 Access:
 
-http://EC2-PUBLIC-IP:8082
+http://EC2-PUBLIC-IP:80
 
 Java Application
 
@@ -195,12 +195,11 @@ AWS Security Group
 
 The EC2 Security Group allows the required ports for administration and application access.
 
-Port	Purpose
-22	SSH
-80	HTTP
-8080	Jenkins
-8081	Java Application
-8082	Portfolio Application
+Port    Purpose
+22      SSH
+80      Portfolio Application / HTTP
+8080    Jenkins
+8081    Java Application
 
 For a production environment, SSH and application ports should be restricted to trusted sources instead of allowing unrestricted internet access
 
@@ -217,6 +216,9 @@ Final DevOps Workflow
                              |
                              | SSH
                              v
+                                                         |
+                             | SSH
+                             v
                     AWS EC2 SERVER
                    Created by Terraform
                              |
@@ -231,7 +233,8 @@ Final DevOps Workflow
                        /           \
                       v             v
                 Portfolio App    Java App
-                   :8082           :8081
+                   :80           :8081
+
 
 Tool Responsibilities
 

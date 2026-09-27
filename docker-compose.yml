@@ -4,7 +4,7 @@ services:
       context: ./myportfolio
     container_name: portfolio-app
     ports:
-      - "8082:80"
+      - "80:80"
 
   yearbook:
     build:
