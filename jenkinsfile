@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     environment {
-        EC2_HOST = '35.176.67.149'
         EC2_USER = 'ec2-user'
         APP_DIR  = '/home/ec2-user/java-yearbook-project'
     }
@@ -12,6 +11,43 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout scm
+            }
+        }
+
+        stage('Terraform Init') {
+            steps {
+                dir('terraform') {
+                    sh 'terraform init'
+                }
+            }
+        }
+
+        stage('Terraform Plan') {
+            steps {
+                dir('terraform') {
+                    sh 'terraform plan'
+                }
+            }
+        }
+
+        stage('Terraform Apply') {
+            steps {
+                dir('terraform') {
+                    sh 'terraform apply -auto-approve'
+                }
+            }
+        }
+
+        stage('Get EC2 IP') {
+            steps {
+                script {
+                    env.EC2_HOST = sh(
+                        script: 'terraform -chdir=terraform output -raw ec2_public_ip',
+                        returnStdout: true
+                    ).trim()
+
+                    echo "EC2 IP: ${env.EC2_HOST}"
+                }
             }
         }
 
