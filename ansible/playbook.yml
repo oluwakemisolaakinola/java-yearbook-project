@@ -74,14 +74,3 @@
       command:
         cmd: docker compose up -d --build
         chdir: /home/ec2-user/java-yearbook-project
-
-    - name: Stop existing application containers
-      command:
-        cmd: docker compose down
-        chdir: /home/ec2-user/java-yearbook-project
-      ignore_errors: true
-
-    - name: Deploy applications with Docker Compose
-      command:
-        cmd: docker compose up -d --build
-        chdir: /home/ec2-user/java-yearbook-project
