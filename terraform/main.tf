@@ -46,6 +46,11 @@ resource "aws_route_table" "public" {
     Name = "devops-capstone-public-rt"
   }
 }
+resource "aws_route_table_association" "public" {
+  subnet_id      = aws_subnet.public.id
+  route_table_id = aws_route_table.public.id
+}
+
 
 resource "aws_security_group" "capstone" {
   name        = "devops-capstone-sg"
@@ -69,25 +74,9 @@ resource "aws_security_group" "capstone" {
   }
 
   ingress {
-    description = "Jenkins"
-    from_port   = 8080
-    to_port     = 8080
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
     description = "Java Application"
     from_port   = 8081
     to_port     = 8081
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    description = "Portfolio Application"
-    from_port   = 8082
-    to_port     = 8082
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
